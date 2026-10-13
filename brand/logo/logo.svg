@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 96" width="360" height="96" role="img" aria-label="Пётр Суханов, клинический психолог">
+  <!-- Логотип одним файлом (документы, соцсети).
+       Текст здесь — обычный SVG-текст: если шрифтов Spectral/Golos Text нет на компьютере,
+       покажется запасной. Для печати попросить перевести текст в кривые. -->
+  <g transform="translate(0 8) scale(1.25)">
+    <path d="M6 48 C 18 48, 29 44, 34 35 C 39 26, 36 15, 27 15 C 18 15, 17 27, 24 33 C 31 39, 43 35, 49 23"
+          fill="none" stroke="#29264a" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="54" cy="14" r="5" fill="#f0b847"/>
+  </g>
+  <text x="96" y="50" fill="#29264a" font-family="Spectral, 'PT Serif', Georgia, serif" font-weight="500" font-size="32">Пётр Суханов</text>
+  <text x="97" y="74" fill="#615d7a" font-family="'Golos Text', 'Segoe UI', Arial, sans-serif" font-size="16">клинический психолог</text>
+</svg>

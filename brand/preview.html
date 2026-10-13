@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Бренд-гид</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="tokens.css">
+
+  <!-- ЕДИНСТВЕННОЕ, ЧТО МЕНЯЕТСЯ ПОД КЛИЕНТА НА ЭТОЙ СТРАНИЦЕ.
+       Цвета и шрифты страница берёт сама из tokens.css. -->
+  <script>
+    window.BRAND = {
+      name: 'Пётр Суханов',
+      descriptor: 'клинический психолог',
+      idea: 'Сумерки → выход к свету. Петля в знаке — повторяющийся жизненный сценарий, линия из неё — найденный выход, жёлтая точка — свет в конце.',
+      headline: 'Когда жизнь зашла в тупик, выход можно найти вместе',
+      lead: 'Работаю с тревогой, кризисами, трудностями в отношениях и повторяющимися сценариями.',
+      body: 'Метод выбирается после первой беседы — с учётом запроса, состояния и ваших пожеланий. Всё, что вы расскажете, остаётся между нами.',
+      cta: 'Записаться на консультацию',
+      rules: [
+        'Жёлтый «свет» — только декор: точка логотипа, маркеры списков. Никогда не для текста и кнопок — на светлом фоне он не читается.',
+        'Знак-петля появляется на странице один раз крупно (первый экран или подвал). Не размножать как узор.',
+        'Заголовки — Spectral 500, без жирного и без выделения отдельных слов цветом.',
+        'Текст выровнен по левому краю, строка не шире 66 знаков.',
+        'Без теней под карточками: глубину даёт фон --color-tint.',
+        'Кнопки — капсулы, карточки — 20px, поля — 8px. Не делать всё одинаково круглым.'
+      ]
+    };
+
+    // Какие цвета показывать и зачем они нужны
+    window.SWATCHES = [
+      ['--color-ink', 'Текст, заголовки, логотип'],
+      ['--color-primary', 'Кнопки и ссылки'],
+      ['--color-highlight', 'Свет: только декор'],
+      ['--color-bg', 'Фон страницы'],
+      ['--color-tint', 'Фон выделенных секций'],
+      ['--color-surface', 'Карточки и формы'],
+      ['--color-muted', 'Второстепенный текст'],
+      ['--color-line', 'Линии и рамки']
+    ];
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--color-bg); color: var(--color-ink);
+      font: 400 var(--fs-body)/var(--lh-body) var(--font-body);
+    }
+    h1, h2, h3 { font-family: var(--font-head); font-weight: var(--fw-head); line-height: var(--lh-head); margin: 0 0 .5em; }
+    p { margin: 0 0 1em; max-width: var(--measure); }
+    a { color: var(--color-primary); }
+    :focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+    .block { padding: var(--space-6) 0; border-top: 1px solid var(--color-line); }
+    .block > .wrap > h2 { font-size: var(--fs-h2); }
+    .note { color: var(--color-muted); font-size: var(--fs-small); }
+
+    /* Шапка гида */
+    .top { padding: var(--space-5) 0 var(--space-6); }
+    .top h1 { font-size: var(--fs-h1); max-width: 14ch; margin-top: var(--space-5); }
+    .top .idea { font-size: var(--fs-lead); color: var(--color-muted); }
+
+    /* Логотип, собранный в HTML: знак + имя (так на сайте и ставить) */
+    .lockup { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+    .lockup img { width: 48px; height: 48px; }
+    .lockup__name { font-family: var(--font-head); font-weight: 500; font-size: 1.375rem; line-height: 1.1; display: block; }
+    .lockup__desc { font-size: var(--fs-small); color: var(--color-muted); display: block; }
+    .lockup--big img { width: 96px; height: 96px; }
+    .lockup--big .lockup__name { font-size: 2.25rem; }
+    .lockup--big .lockup__desc { font-size: 1rem; }
+    .on-dark .lockup__desc { color: var(--color-inverse-text); opacity: .75; }
+
+    .logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4); }
+    .stage { border-radius: var(--radius-m); padding: var(--space-5); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-4); }
+    .stage--light { background: var(--color-surface); }
+    .stage--dark  { background: var(--color-inverse-bg); color: var(--color-inverse-text); }
+    .stage--dark .note { color: inherit; opacity: .7; }
+    .stage--tint { background: var(--color-tint); }
+    .sizes { display: flex; align-items: end; gap: var(--space-4); }
+    .sizes img { display: block; }
+
+    /* Цвета */
+    .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-3); list-style: none; padding: 0; margin: 0; }
+    .swatch__chip { height: 96px; border-radius: var(--radius-s); border: 1px solid var(--color-line); }
+    .swatch__name { font-weight: 500; margin-top: var(--space-2); }
+    .swatch__hex { font-variant-numeric: tabular-nums; }
+    .swatch__role { color: var(--color-muted); font-size: var(--fs-small); }
+
+    /* Типографика */
+    .type-row { display: grid; grid-template-columns: 180px 1fr; gap: var(--space-4); padding: var(--space-4) 0; border-bottom: 1px solid var(--color-line); align-items: baseline; }
+    .type-row:last-child { border-bottom: 0; }
+    .t-h1 { font-family: var(--font-head); font-weight: var(--fw-head); font-size: var(--fs-h1); line-height: var(--lh-head); }
+    .t-h2 { font-family: var(--font-head); font-weight: var(--fw-head); font-size: var(--fs-h2); line-height: var(--lh-head); }
+    .t-h3 { font-family: var(--font-head); font-weight: var(--fw-head); font-size: var(--fs-h3); line-height: 1.3; }
+    .t-lead { font-size: var(--fs-lead); }
+    .t-small { font-size: var(--fs-small); color: var(--color-muted); }
+    .type-row p, .type-row div { margin: 0; }
+
+    /* Элементы */
+    .elements { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4); align-items: start; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 1.5rem; border-radius: var(--radius-pill);
+           font: 500 1rem/1 var(--font-body); text-decoration: none; cursor: pointer; border: 1.5px solid var(--color-primary); }
+    .btn--primary { background: var(--color-primary); color: var(--color-on-primary); }
+    .btn--primary:hover { background: var(--color-primary-hover); border-color: var(--color-primary-hover); }
+    .btn--secondary { background: transparent; color: var(--color-primary); }
+    .btn--secondary:hover { background: var(--color-tint); }
+    .btns { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    .field { display: grid; gap: var(--space-2); margin-bottom: var(--space-3); }
+    .field label { font-weight: 500; font-size: var(--fs-small); }
+    .field input { font: inherit; min-height: 48px; padding: 0 .875rem; border: 1px solid var(--color-line); border-radius: var(--radius-s); background: var(--color-surface); color: var(--color-ink); }
+    .field input:focus-visible { border-color: var(--color-primary); }
+    .field--error input { border-color: var(--color-error); }
+    .field__msg { color: var(--color-error); font-size: var(--fs-small); }
+    .card { background: var(--color-tint); border-radius: var(--radius-m); padding: var(--space-4); }
+    .card h3 { font-size: var(--fs-h3); }
+    .card p:last-child { margin-bottom: 0; }
+
+    /* Правила */
+    .rules { padding-left: 1.25rem; max-width: var(--measure); }
+    .rules li { margin-bottom: var(--space-3); }
+    .rules li::marker { color: var(--color-highlight); font-size: 1.2em; }
+
+    @media (max-width: 600px) {
+      .type-row { grid-template-columns: 1fr; gap: var(--space-2); }
+      .lockup--big img { width: 72px; height: 72px; }
+      .lockup--big .lockup__name { font-size: 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="lockup js-lockup" href="#"><img src="logo/logo-mark.svg" alt=""><span><span class="lockup__name js-name"></span><span class="lockup__desc js-desc"></span></span></a>
+      <h1>Бренд-гид</h1>
+      <p class="idea js-idea"></p>
+    </div>
+  </header>
+
+  <section class="block" aria-labelledby="h-logo">
+    <div class="wrap">
+      <h2 id="h-logo">Логотип</h2>
+      <div class="logo-grid">
+        <div class="stage stage--light">
+          <span class="lockup lockup--big"><img src="logo/logo-mark.svg" alt=""><span><span class="lockup__name js-name"></span><span class="lockup__desc js-desc"></span></span></span>
+          <p class="note">Основной: на светлом фоне. На сайте собирается в HTML — знак-картинка + имя текстом.</p>
+        </div>
+        <div class="stage stage--dark on-dark">
+          <span class="lockup lockup--big"><img src="logo/logo-mark-inverse.svg" alt=""><span><span class="lockup__name js-name"></span><span class="lockup__desc js-desc"></span></span></span>
+          <p class="note">Инверсный: на тёмном фоне, например в подвале.</p>
+        </div>
+        <div class="stage stage--tint">
+          <img src="logo/logo.svg" alt="Логотип одним файлом" style="max-width:100%;height:auto" width="360" height="96">
+          <p class="note">logo.svg — одним файлом для документов и соцсетей.</p>
+        </div>
+        <div class="stage stage--light">
+          <div class="sizes">
+            <img src="logo/favicon.svg" width="16" height="16" alt="Иконка 16 пикселей">
+            <img src="logo/favicon.svg" width="32" height="32" alt="Иконка 32 пикселя">
+            <img src="logo/favicon.svg" width="64" height="64" alt="Иконка 64 пикселя">
+            <img src="logo/logo-mark.svg" width="128" height="128" alt="Знак крупно">
+          </div>
+          <p class="note">Иконка вкладки браузера (favicon) и знак отдельно.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-colors">
+    <div class="wrap">
+      <h2 id="h-colors">Цвета</h2>
+      <ul class="swatches js-swatches"></ul>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-type">
+    <div class="wrap">
+      <h2 id="h-type">Шрифты</h2>
+      <div class="type-row"><span class="t-small">Заголовок H1</span><div class="t-h1 js-headline"></div></div>
+      <div class="type-row"><span class="t-small">Секция H2</span><div class="t-h2">С чем можно прийти</div></div>
+      <div class="type-row"><span class="t-small">Карточка H3</span><div class="t-h3">Тревога и стресс</div></div>
+      <div class="type-row"><span class="t-small">Вводный абзац</span><p class="t-lead js-lead"></p></div>
+      <div class="type-row"><span class="t-small">Основной текст</span><p class="js-body"></p></div>
+      <div class="type-row"><span class="t-small">Подпись</span><p class="t-small">Конфиденциально. Очно и онлайн.</p></div>
+      <p class="note js-fonts"></p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-ui">
+    <div class="wrap">
+      <h2 id="h-ui">Элементы</h2>
+      <div class="elements">
+        <div>
+          <div class="btns">
+            <a class="btn btn--primary js-cta" href="#"></a>
+            <a class="btn btn--secondary" href="#">Позвонить</a>
+          </div>
+        </div>
+        <form onsubmit="return false">
+          <div class="field"><label for="f-name">Как к вам обращаться</label><input id="f-name" type="text" placeholder="Имя"></div>
+          <div class="field field--error"><label for="f-phone">Телефон</label><input id="f-phone" type="tel" value="+7 905" aria-describedby="f-phone-msg"><span class="field__msg" id="f-phone-msg">Номер неполный: нужно 10 цифр после +7.</span></div>
+        </form>
+        <div class="card"><h3>Жизненные кризисы</h3><p>Развод, потеря близкого, смена работы, переезд — когда привычная опора исчезла.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-rules">
+    <div class="wrap">
+      <h2 id="h-rules">Правила</h2>
+      <ul class="rules js-rules"></ul>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var B = window.BRAND;
+      function fill(sel, text) { document.querySelectorAll(sel).forEach(function (el) { el.textContent = text; }); }
+      fill('.js-name', B.name);
+      fill('.js-desc', B.descriptor);
+      fill('.js-idea', B.idea);
+      fill('.js-headline', B.headline);
+      fill('.js-lead', B.lead);
+      fill('.js-body', B.body);
+      fill('.js-cta', B.cta);
+      document.title = 'Бренд-гид: ' + B.name;
+
+      var css = getComputedStyle(document.documentElement);
+      var list = document.querySelector('.js-swatches');
+      window.SWATCHES.forEach(function (s) {
+        var hex = css.getPropertyValue(s[0]).trim();
+        var li = document.createElement('li');
+        li.innerHTML = '<div class="swatch__chip"></div><div class="swatch__name"></div><div class="swatch__hex"></div><div class="swatch__role"></div>';
+        li.querySelector('.swatch__chip').style.background = 'var(' + s[0] + ')';
+        li.querySelector('.swatch__name').textContent = s[0];
+        li.querySelector('.swatch__hex').textContent = hex;
+        li.querySelector('.swatch__role').textContent = s[1];
+        list.appendChild(li);
+      });
+
+      var rules = document.querySelector('.js-rules');
+      B.rules.forEach(function (r) { var li = document.createElement('li'); li.textContent = r; rules.appendChild(li); });
+
+      fill('.js-fonts', 'Заголовки: ' + css.getPropertyValue('--font-head').trim() + '. Текст: ' + css.getPropertyValue('--font-body').trim() + '.');
+    })();
+  </script>
+</body>
+</html>
