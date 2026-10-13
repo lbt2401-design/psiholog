@@ -1,0 +1,12 @@
+# Секреты: настройки почты с паролем (пример — config.example.php)
+api/config.php
+
+# Заявки клиентов и логи — персональные данные, в репозиторий нельзя
+data/leads.csv
+data/logs/
+
+# Служебное
+.claude/
+
+# Скрыто до решения владельца (см. комментарий в index.html)
+assets/img/certificates/cert-ageev*.jpg
